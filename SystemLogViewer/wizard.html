@@ -1,0 +1,32 @@
+<style>
+textarea[name="logs"] {
+    overflow-y: scroll !important;
+}
+
+textarea[name="logs"]::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+textarea[name="logs"]::-webkit-scrollbar-track {
+    background: #9a9a9a !important;
+}
+
+textarea[name="logs"]::-webkit-scrollbar-thumb {
+    background: #3f3f3f !important;
+    border-radius: 5px !important;
+}
+
+textarea[name="logs"]::-webkit-scrollbar-thumb:hover {
+    background: #343434 !important;
+}
+</style>
+
+<fieldset name="log-viewer" class="primary expanded">
+    <legend>System Log Viewer</legend>
+    <div class="log-viewer-form">
+        <div class="log-output" data-object="logs">
+            <label><span class="label" style="width: 500px; display: inline-block;"><b>File Data</b> (Last 1000 logs from /var/log/messages)</span></label>
+            <textarea name="logs" readonly rows="25" style="width: 1000px; font-family: monospace; resize: both;"></textarea>
+        </div>
+    </div>
+</fieldset>

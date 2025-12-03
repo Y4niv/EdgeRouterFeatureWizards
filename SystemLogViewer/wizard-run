@@ -15,12 +15,10 @@ load () {
     
     # Read the log file
     if logs=$(tail -n "$numberofrows" "$logpath" 2>&1); then
-        # Escape special characters for JSON
-        logs="${logs//\\/\\\\}"
-        logs="${logs//\"/\\\"}"
-        logs="${logs//$'\n'/\\n}"
-        
-        echo "{\"success\":\"1\",\"data\":{\"logs\":\"$logs\"},\"readonly\":\"1\"}"
+       # Use jq to build the entire JSON response properly
+        jq -n \
+            --arg logs "$logs" \
+            '{success: "1", data: {logs: $logs}, readonly: "1"}'
     else
         echo "{\"success\":\"0\",\"error\": \"Failed to read log file\"}"
         return 1
